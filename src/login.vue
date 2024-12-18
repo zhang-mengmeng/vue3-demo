@@ -28,7 +28,6 @@
 <script setup lang="ts">
 import { reactive, ref} from "vue"
 import { useRouter } from "vue-router";
-import JSEncrypt from 'jsencrypt'
 import type { FormItemRule,FormInstance } from 'element-plus';
 import { ElMessage } from 'element-plus'
 const router = useRouter()

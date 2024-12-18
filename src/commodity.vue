@@ -25,11 +25,11 @@
             <el-table-column prop="address" label="操作">
                 <template #default="scoped">
                     <div>
-                        <el-button @click="handleEdit(scoped.$index, scoped.row)" link type="primary" size="small">
+                        <el-button @click="handleEdit(scoped.row)" link type="primary" size="small">
                             修改
                         </el-button>
                         <el-button link type="primary" size="small"
-                            @click="handledel(scoped.$index, scoped.row)">删除</el-button>
+                            @click="handledel(scoped.row)">删除</el-button>
                     </div>
                 </template>
             </el-table-column>
@@ -69,7 +69,7 @@ const onSubmit = () => {
     })
 }
 onSubmit()
-const handleEdit = (index: number, data: Object) => {
+const handleEdit = ( data: Object) => {
     dialogref.value?.feedBack(data)
     dialogVisible.value = true
 }
@@ -78,7 +78,7 @@ type Data = {
     name: string,
     price: number
 }
-const handledel = (index: number, data: Data) => {
+const handledel = (data: Data) => {
     const id = data.id
     console.log(id)
     fetch(`http://localhost:3000/commodity/${id}`, {
