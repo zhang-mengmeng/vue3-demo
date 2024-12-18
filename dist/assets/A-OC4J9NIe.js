@@ -1,0 +1,1 @@
+import{_ as o,c as s,f as t,o as c}from"./index-CSmAIVf7.js";const n={},a={class:"login"};function r(_,e){return c(),s("div",a,e[0]||(e[0]=[t("h1",null,"我是A页面",-1)]))}const l=o(n,[["render",r],["__scopeId","data-v-797097d1"]]);export{l as default};
