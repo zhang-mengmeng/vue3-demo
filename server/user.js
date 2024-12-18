@@ -3,7 +3,6 @@ import fs from 'node:fs'
 import path from 'node:path'
 import crypto from 'node:crypto'
 import jwt from 'jsonwebtoken'
-import dayjs from 'dayjs'
 const FS = fs.readFileSync(path.join(process.cwd(), './user.json'), 'utf-8',)
 
 const FSDATA = (data) => {
@@ -105,42 +104,5 @@ router.post('/login',(req,res) =>{
     })
 })
 
-const now = dayjs();
-function getTimeOfDay(time) {
-    const hour = time.hour();
-  
-    if (hour >= 5 && hour < 12) {
-      return '早上';
-    } else if (hour >= 12 && hour < 14) {
-      return '中午';
-    } else if (hour >= 14 && hour < 18) {
-      return '下午';
-    } else {
-      return '晚上';
-    }
-  }
-  
-  // 获取时间段
-  const timeOfDay = getTimeOfDay(now);
-  
-  console.log(`当前时间段是：${timeOfDay}`);
-
-  router.get('/sse',(req,res)=>{
-    res.writeHead(200,{
-        'content-type':'text/event-stream'
-    })
-    const txt = timeOfDay+'好,现在是北京时间'+dayjs().format('YYYY-MM-DDTHH:mm:ss')
-    const arr = txt.split('')
-    let currnet = 0
-    let timer = setInterval(()=>{
-        if(currnet<arr.length) {
-            res.write(`enent: time\n`)
-            res.write(`data:${arr[currnet]}\n\n`)
-            currnet ++
-        }else{
-            clearInterval(timer)
-        }
-    },300)
-  })
 
 export default router

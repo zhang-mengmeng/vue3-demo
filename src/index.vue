@@ -19,7 +19,7 @@ import router from './router/index';
             <el-container>
                 <el-header style="border-bottom: 1px solid gray;">
                     <div style="display: flex; justify-content: space-between;align-items: center;height: 100%;">
-                        <p>{{ text }}</p>
+                        <p>左侧内容</p>
                         <el-button @click="tuichu">退出</el-button>
                     </div>
                 </el-header>
@@ -32,7 +32,7 @@ import router from './router/index';
 </template>
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
-import { reactive, ref, } from 'vue';
+import { reactive } from 'vue';
 const handleOpen = (key: string, keyPath: string[]) => {
     console.log(key, keyPath)
 }
@@ -72,16 +72,6 @@ const getinfo = () => {
 }
 getinfo()
 
-const text = ref('')
-const gettime = () =>{
-    text.value = ''
-    const sse = new EventSource('http://localhost:3000/user/sse')
-    sse.addEventListener('message',(e)=>{
-        
-        text.value += e.data
-    })
-}
-gettime()
 
 const tuichu = () =>{
     localStorage.clear()
